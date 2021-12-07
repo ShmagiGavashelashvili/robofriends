@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { searchBoxAction } from "../actions/searchBoxAction";
 import { fetchRoboFriends } from "../actions/getRoboFrends";
 import Header from "./Header";
+import RandomRobots from "./RandomRobots";
 
 function RoboFriends() {
   const [random, setRandom] = useState(null);
@@ -15,8 +16,7 @@ function RoboFriends() {
   const searchFieldFromState = useSelector((state) => state.searchField);
   const { searchField } = searchFieldFromState;
 
-  const robotsData = useSelector((state) => state.robotsData);
-  const { robots, loading } = robotsData;
+  const { robots, loading } = useSelector((state) => state.robotsData);
 
   const randomRobots = () => {
     let rand = Math.floor(Math.random() * robots.length) + 1;
@@ -41,7 +41,7 @@ function RoboFriends() {
   return (
     <div className="container">
       <Header />
-      <button onClick={randomRobots}>Click To Get Random Robots</button>
+      <RandomRobots randomRobots={randomRobots} />
       <SearchBox onSearchChange={onSearchChange} />
       {loading ? (
         <p style={{ textAlign: "center", fontSize: "50px", color: "#ffffff" }}>Loading...</p>

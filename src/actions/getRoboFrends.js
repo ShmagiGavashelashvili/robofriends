@@ -20,7 +20,7 @@ export const fetchRoboFriends = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ROBOFRIENDS_REQUEST_FAIL,
-      error: error.message,
+      payload: error.message,
     });
   }
 };
