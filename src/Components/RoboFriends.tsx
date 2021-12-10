@@ -8,26 +8,50 @@ import { fetchRoboFriends } from "../actions/getRoboFrends";
 import Header from "./Header";
 import RandomRobots from "./RandomRobots";
 
+interface SearchFieldState {
+  searchField: string
+}
+
+interface SearchField {
+  searchField: SearchFieldState
+}
+
+interface Te {
+  id: number;
+  name: string;
+  username: string,
+  email: string
+};
+
+interface RobotsState {
+  robots: Array<Te>,
+  loading: boolean
+}
+
+interface RobotsData {
+  robotsData: RobotsState
+}
+
 function RoboFriends() {
-  const [random, setRandom] = useState(null);
+  const [random, setRandom] = useState<number | null>(null);
 
   const dispatch = useDispatch();
 
-  const searchFieldFromState = useSelector((state) => state.searchField);
-  const { searchField } = searchFieldFromState;
+  const { searchField } = useSelector((state: SearchField) => state.searchField);
 
-  const { robots, loading } = useSelector((state) => state.robotsData);
+  const { robots, loading } = useSelector((state: RobotsData) => state.robotsData);
 
-  const randomRobots = () => {
+
+  const randomRobots = (): void => {
     let rand = Math.floor(Math.random() * robots.length) + 1;
     setRandom(rand);
   };
 
-  const onSearchChange = (e) => {
+  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(searchBoxAction(e.target.value));
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!robots.length) {
       dispatch(fetchRoboFriends());
     }

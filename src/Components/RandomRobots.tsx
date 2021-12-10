@@ -1,6 +1,10 @@
 import React from "react";
 
-const RandomRobots = ({ randomRobots }) => {
+interface FuncProp {
+  randomRobots(): void
+}
+
+const RandomRobots = ({ randomRobots }: FuncProp) => {
   return (
     <div>
       <button onClick={randomRobots}>Click To Get Random Robots</button>
