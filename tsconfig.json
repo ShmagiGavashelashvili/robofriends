@@ -17,9 +17,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
   },
   "include": [
     "src"
-  ]
+  ],
+  "transformIgnorePatterns": ["/node_modules/(?!(@jest|@testing-library)/)", "/@jest/"]
 }
